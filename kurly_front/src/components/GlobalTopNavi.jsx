@@ -42,6 +42,8 @@ const StBox = styled.div`
     width : 100%;
     height : 44px;
     background-color: #FFFFFF;
+    position: sticky;
+    top: 44px;
 `
 
 export default GlobalTopNavi

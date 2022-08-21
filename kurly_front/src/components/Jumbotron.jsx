@@ -5,7 +5,6 @@ const Jumbotron = () => {
     return(
         <>
             <StBox>
-                
             </StBox>
         </>
     );

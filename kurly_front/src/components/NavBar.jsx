@@ -9,8 +9,6 @@ const NavBar = () => {
         <>
           <StNavBar>
             <StLogo></StLogo>
-            <StMiddleSection>
-            </StMiddleSection>
             <StRightSection>
                 <StMapImg></StMapImg>
                 <StCartImg></StCartImg>
@@ -19,9 +17,7 @@ const NavBar = () => {
         </>
     )
 }
-const StMiddleSection = styled.div`
 
-`
 const StRightSection = styled.div`
     width: 97.234px;
     display: flex;
@@ -66,6 +62,8 @@ const StNavBar = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0px;
 `
 
 export default NavBar;

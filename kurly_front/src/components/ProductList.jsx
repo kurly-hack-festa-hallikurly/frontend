@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ProductListView from "./ProductListView";
 
 const ProductList = () => {
     return(
@@ -12,17 +13,29 @@ const ProductList = () => {
                         추천순
                     </StFilter>
                 </StFilterBox>
-                <StProductBox>
+                <StProductWrapper>
+                    
+                    <ProductListView
+                    
+                    >
 
-                </StProductBox>
+                    </ProductListView>
+                </StProductWrapper>
             </StBox>
 
         </>
     );
 }
 
-const StProductBox = styled.div`
-
+const StProductWrapper = styled.div`
+    width: 358px;
+    height: fit-content;
+    margin: auto;
+    background-color: blue;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    box-sizing: border-box;
 `
 
 const StFilter = styled.div`
