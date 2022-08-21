@@ -1,25 +1,35 @@
 import styled from "styled-components";
 import ProductListView from "./ProductListView";
+import { useGetProductInfo } from "../Hooks/useGetProductInfo"
 
 const ProductList = () => {
+    const { data } = useGetProductInfo();
+    console.log( data )
     return(
         <>
             <StBox>
                 <StFilterBox>
                     <StProductVolume>
-                        총 293건
+                        총 {data.length}건
                     </StProductVolume>
                     <StFilter>
                         추천순
                     </StFilter>
                 </StFilterBox>
                 <StProductWrapper>
+                    {
+                        data?.map((product, index)=>(
+                        <ProductListView
+                        key={index}
+                        productNo={product.productNo}
+                        productNm={product.productNm}
+                        price={product.price}
+                        productImgPath={product.productImgPath}
+                        >
+                        </ProductListView>
+                        ))
+                    }
                     
-                    <ProductListView
-                    
-                    >
-
-                    </ProductListView>
                 </StProductWrapper>
             </StBox>
 
@@ -31,7 +41,6 @@ const StProductWrapper = styled.div`
     width: 358px;
     height: fit-content;
     margin: auto;
-    background-color: blue;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

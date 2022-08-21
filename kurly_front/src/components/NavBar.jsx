@@ -1,17 +1,22 @@
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom";
+
 import kurly_logo from "../images/kurly_logo.png"
 import cartImg from "../images/cart.svg"
 import mapImg from "../images/map.svg"
 
 
 const NavBar = () => {
+    const navigate = useNavigate();
     return (
         <>
           <StNavBar>
             <StLogo></StLogo>
             <StRightSection>
                 <StMapImg></StMapImg>
-                <StCartImg></StCartImg>
+                <StCartImg
+                onClick={()=>navigate('/cart')}
+                ></StCartImg>
             </StRightSection>
           </StNavBar>
         </>

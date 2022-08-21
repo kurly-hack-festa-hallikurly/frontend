@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import imgPlaceHolder from "../images/imgPlaceHolder.png"
 
-const ProductListView = ({ productNo, productNm, productImgPath })=>{
+const ProductListView = ({ productNo, productNm, productImgPath, price })=>{
     return (
         <>
             <StBox>
@@ -9,8 +9,8 @@ const ProductListView = ({ productNo, productNm, productImgPath })=>{
                 </StProductImg>
                 <StProductInfo>
                     <StDeliType>샛별배송</StDeliType>
-                    <StProductTitle>productNm</StProductTitle>
-                    <StProductPrice></StProductPrice>
+                    <StProductTitle>{productNm}</StProductTitle>
+                    <StProductPrice>{price} 원</StProductPrice>
                     <StKurlyOnlyLabel>Kurly Only</StKurlyOnlyLabel>
                 </StProductInfo>
             </StBox>
@@ -18,8 +18,20 @@ const ProductListView = ({ productNo, productNm, productImgPath })=>{
     );
 }
 const StKurlyOnlyLabel = styled.div`
+    padding: 2px 6px;
+    border-radius: 4px;
+    background-color: rgb(244, 244, 244);
+    font-weight: 600;
+    font-size: 10px;
+    color: rgb(95, 0, 128);
+    line-height: 16px;
+    width: 51.719px;
 `
 const StProductPrice = styled.div`
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 19px;
+    white-space: nowrap;
 `
 const StProductTitle = styled.div`
     overflow: hidden;
@@ -60,7 +72,6 @@ const StBox = styled.div`
     box-sizing: border-box;
     font-size: 14px;
     color: #333;
-    background-color: red;
     display: flex;
     flex-direction: column;
 `
