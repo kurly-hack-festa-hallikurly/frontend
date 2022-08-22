@@ -29,7 +29,6 @@ const ProductList = () => {
                         </ProductListView>
                         ))
                     }
-                    
                 </StProductWrapper>
             </StBox>
 
