@@ -39,10 +39,10 @@ const StMenu = styled.div`
 `
 
 const StBox = styled.div`
-    width : 100%;
+    width : 390px;
     height : 44px;
     background-color: #FFFFFF;
-    position: sticky;
+    position: fixed;
     top: 44px;
 `
 

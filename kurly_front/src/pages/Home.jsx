@@ -26,7 +26,6 @@ const StBox = styled.div`
     margin: auto;
     width: 390px;
     height: fit-content;
-    border: 1px solid black;
 `
 
 export default Home;

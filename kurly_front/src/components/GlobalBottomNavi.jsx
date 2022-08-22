@@ -1,17 +1,22 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
 import home_active from "../images/home_active.svg";
 import hamburger from "../images/hamburger.svg";
 import search from "../images/search.svg";
 import mypage from "../images/mypage.svg";
 
 const GlobalBottomNavi = () => {
+    const navigate = useNavigate();
     return(
         <>
             <StBox>
                 <StMenuBox><StMenuImg img={home_active}></StMenuImg></StMenuBox>
                 <StMenuBox><StMenuImg img={hamburger}></StMenuImg></StMenuBox>
                 <StMenuBox><StMenuImg img={search}></StMenuImg></StMenuBox>
-                <StMenuBox><StMenuImg img={mypage}></StMenuImg></StMenuBox>
+                <StMenuBox
+                onClick={()=>{navigate('/login')}}
+                ><StMenuImg img={mypage}></StMenuImg></StMenuBox>
             </StBox>
         </>
     );

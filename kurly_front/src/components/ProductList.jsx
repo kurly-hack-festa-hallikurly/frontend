@@ -10,7 +10,7 @@ const ProductList = () => {
             <StBox>
                 <StFilterBox>
                     <StProductVolume>
-                        총 {data.length}건
+                        총 {data?.length}건
                     </StProductVolume>
                     <StFilter>
                         추천순
@@ -38,7 +38,7 @@ const ProductList = () => {
 }
 
 const StProductWrapper = styled.div`
-    width: 358px;
+    width: 100%;
     height: fit-content;
     margin: auto;
     display: flex;

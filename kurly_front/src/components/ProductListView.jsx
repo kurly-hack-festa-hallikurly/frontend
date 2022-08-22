@@ -25,7 +25,7 @@ const StKurlyOnlyLabel = styled.div`
     font-size: 10px;
     color: rgb(95, 0, 128);
     line-height: 16px;
-    width: 51.719px;
+    width: 51.9px;
 `
 const StProductPrice = styled.div`
     font-size: 14px;
@@ -59,11 +59,12 @@ const StProductInfo = styled.div`
 
 `
 const StProductImg = styled.div`
-    width: 175px;
+    width: 165px;
     height: 227.672px;
     background-image: url(${props => props.imgSrc || imgPlaceHolder});
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: 50% 50%;
 `
 
 const StBox = styled.div`

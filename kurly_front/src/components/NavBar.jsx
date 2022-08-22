@@ -61,13 +61,13 @@ const StLogo = styled.div`
     background-repeat: no-repeat;
 `
 const StNavBar = styled.div`
-    width : 100%;
+    width : 390px;
     height : 44px;
     background-color: #5F0080;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
+    position: fixed;
     top: 0px;
 `
 

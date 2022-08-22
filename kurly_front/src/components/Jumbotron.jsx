@@ -16,5 +16,6 @@ const StBox = styled.div`
     background-image: url(${jumbo_img});
     background-size: cover;
     background-repeat: no-repeat;
+    margin-top: 88px;
 `
 export default Jumbotron
