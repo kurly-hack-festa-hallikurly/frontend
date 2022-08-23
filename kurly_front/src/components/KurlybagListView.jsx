@@ -1,101 +1,45 @@
+import { useState } from "react";
 import styled from "styled-components";
 import imgPlaceHolder from "../images/imgPlaceHolder.png";
 import kurlyBagImg from "../images/kurly_bag_img.gif";
-import delIcon from "../images/delIcon.png";
-import { useState } from "react";
+import questionMark from "../images/questionmark.png";
 
-const CartListView = ({ productNo, productNm, productImgPath, price })=>{
+const KurlybagListView = ({ productNo, productNm, productImgPath, price })=>{
     const [count, setCount] = useState(1);
     return (
         <>
             <StBox>
-                <StProductItemBox>
-                    <StCheckBox type="checkbox"></StCheckBox>
-                <StProductImg imgSrc={productImgPath}>
+                <StCartTopImgBox>
+                    <StCartTopTitleBox>
+                        <StCartTopKurlyBag>Kurly Bag</StCartTopKurlyBag>
+                        <StCartTopTutorialBtn></StCartTopTutorialBtn>
+                    </StCartTopTitleBox>
+                    <StCartTopImg></StCartTopImg>
+                    <StCartTopText>
+                        은선님이 장보는 패턴을 분석해 이번 주 추천 상품을 준비했어요
+                    </StCartTopText>
+                </StCartTopImgBox>
+                <StCartKurlyBagBox>
+                    <StSelectAllBox>
+                        <StSelectText>
+                            <StSeletCheckbox></StSeletCheckbox>
+                            컬리백 전체선택
+                        </StSelectText>
+                        <StSelectDel>선택삭제</StSelectDel>
+                    </StSelectAllBox>
+                </StCartKurlyBagBox>
+                {/* <StProductImg imgSrc={productImgPath}>
                 </StProductImg>
                 <StProductInfo>
+                    <StDeliType>샛별배송</StDeliType>
                     <StProductTitle>{productNm}</StProductTitle>
                     <StProductPrice>{price} 원</StProductPrice>
-                </StProductInfo>
-                <StCountBox>
-                    <StDelIcon></StDelIcon>
-                    <StNumBox>
-                        <StMinus
-                        onClick={
-                            count>1
-                            ?()=>{setCount(prev=>prev-1)}
-                            :()=>{return}
-                        }
-                        >-</StMinus>
-                        <StNum>{count}</StNum>
-                        <StPlus
-                        onClick={()=>{setCount(prev=>prev+1)}}>+</StPlus>
-                    </StNumBox>
-                </StCountBox>
-                </StProductItemBox>
+                    <StKurlyOnlyLabel>Kurly Only</StKurlyOnlyLabel>
+                </StProductInfo> */}
             </StBox>
         </>
     );
 }
-const StNum = styled.div`
-    width: 21px;
-    height: 28px;
-    font-size: 12px;
-    align-items: center;
-    text-align: center;
-    box-sizing: border-box;
-    padding-top: 6px;
-`
-const StPlus = styled.div`
-    width: 28px;
-    height: 28px;
-    font-size: 20px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    box-sizing: border-box;
-`
-const StMinus = styled.div`
-    width: 28px;
-    height: 28px;
-    font-size: 20px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    box-sizing: border-box;
-    color: #B5B5B5
-`
-const StCountBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`
-const StNumBox = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0px;
-
-    width: 77px;
-    height: 28px;
-    left: 272px;
-    top: 51px;
-
-    border: 1px solid #DDDFE1;
-    border-radius: 3px;
-    box-sizing: border-box;
-    margin-top: 20px;
-`
-const StDelIcon = styled.div`
-    width: 12px;
-    height: 13px;
-    background-image: url(${delIcon});
-    background-repeat: no-repeat;
-    background-size: contain;
-    margin-top: 10px;
-    margin-left: 60px;
-`
 const StMyProductWrapper = styled.div`
     
 `
@@ -206,31 +150,80 @@ const StProductInfo = styled.div`
     font-size: 14px;
     color: rgb(51, 51, 51);
     padding: 7px 5px 0px 0px;
-    margin-left: 12px;
+
 `
 const StProductImg = styled.div`
-    width: 60px;
-    height: 78px;
+    width: 165px;
+    height: 227.672px;
     background-image: url(${props => props.imgSrc || imgPlaceHolder});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
 `
-const StCheckBox = styled.input`
-    width: 20px;
-    height: 20px;
-    align-self: center;
-    margin-right: 10px;
-`
 
-const StProductItemBox = styled.div`
-    width: 349px;
-    height: 79px;
+const StCartTopKurlyBag = styled.div`
+    width: 100px;
+    height: 24px;
+
+    font-family: -apple-system, BlinkMacSystemFont, AppleSDGothicNeo, "Apple SD Gothic Neo", Helvetica, "Noto Sans KR", "malgun gothic", "맑은 고딕", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    color: #000000;
+`
+const StCartTopTutorialBtn = styled.div`
+    width: 17.5px;
+    height: 17.5px;
+    background-image: url(${questionMark});
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 240px;
+`
+const StCartTopText = styled.div`
+    width: 261px;
+    height: 60px;
+
+    font-family:  -apple-system, BlinkMacSystemFont, AppleSDGothicNeo, "Apple SD Gothic Neo", Helvetica, "Noto Sans KR", "malgun gothic", "맑은 고딕", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 30px;
+    margin-top: 22px;
+
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #333333;
+`
+const StCartTopImg = styled.div`
+    width: 130px;
+    height: 140px;
+    background-image: url(${kurlyBagImg});
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 50px;
+`
+const StCartTopTitleBox = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: row;
-    margin-bottom: 24px;
+    align-items: flex-start;
+    align-items: center;
+`
+const StCartTopImgBox = styled.div`
+    width: 349px;
+    height: 349px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #F4F4F4;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
     padding: 0 20px 0 20px;
 `
+
 const StBox = styled.div`
     width: 100%;
     height: fit-content;
@@ -242,4 +235,4 @@ const StBox = styled.div`
     /* padding: 0 20px 0 20px; */
 `
 
-export default CartListView
+export default KurlybagListView

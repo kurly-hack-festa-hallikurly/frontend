@@ -4,7 +4,6 @@ import { useGetProductInfo } from "../Hooks/useGetProductInfo"
 
 const ProductList = () => {
     const { data } = useGetProductInfo();
-    console.log( data )
     return(
         <>
             <StBox>
