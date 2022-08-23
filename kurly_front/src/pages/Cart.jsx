@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useGetProductInfo } from "../Hooks/useGetProductInfo"
 import styled from "styled-components";
 
@@ -50,15 +50,15 @@ const Cart = ()=>{
                 {
                     cartList
                     ?
-                    cartList.map((product, index)=>(
+                    // cartList.map((product, index)=>(
                     <CartListView
-                    key={index}
-                    productNo={product.productNo}
-                    productNm={product.productNm}
-                    price={product.price}
-                    productImgPath={product.productImgPath}
+                    // key={index}
+                    // productNo={product.productNo}
+                    // productNm={product.productNm}
+                    // price={product.price}
+                    // productImgPath={product.productImgPath}
                     ></CartListView>
-                    ))
+                    // ))
                     : <StEmptyBox>
                     장바구니에 담긴 상품이 없습니다
                     </StEmptyBox>
