@@ -22,6 +22,7 @@ const Login = ()=>{
             setUserId(()=>(idRef.current.value));
             console.log(userId);
             console.log(data);
+            navigate('/');
             
         }})
 
