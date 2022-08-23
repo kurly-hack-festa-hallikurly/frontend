@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useGetProductInfo } from "../Hooks/useGetProductInfo"
+import { useGetProductInfo } from "../Hooks/useGetProductInfo";
+import { useGetCartInfo } from "../Hooks/useGetCartInfo";
+import { useGetKurlybagInfo } from "../Hooks/useGetKurlybagInfo";
 import styled from "styled-components";
 
 import backBtn from "../images/backBtn.svg"
@@ -9,15 +11,19 @@ import CartListView from "../components/CartListView";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import KurlybagListView from "../components/KurlybagListView";
+import KurlybagView from "../components/KurlybagView";
 
 
 const Cart = ()=>{
     const navigate = useNavigate();
     const user_data = useSelector((state)=>state);
+    const user_id = 1;
     console.log(user_data);
     const [myCartList, setMyCartList] = useState();
     const [KurlybagList, setKurlybagList] = useState();
     const { data } = useGetProductInfo(); // 변경 필요
+    const { data: cart } = useGetCartInfo({user_id});
+    const { data: kurlybag} = useGetKurlybagInfo({user_id});
     useEffect(()=>{
         setMyCartList(data);
         setKurlybagList(data);
@@ -50,7 +56,7 @@ const Cart = ()=>{
                 <StDivider>
                 </StDivider>
                 {
-                    myCartList
+                    cart
                     ?
                     <>
                     <StSelectAllBox>
@@ -65,22 +71,44 @@ const Cart = ()=>{
                     <></>
                 }   
                 {
-                    myCartList
+                    cart
                     ?
-                    myCartList.map((product, index)=>(
-                    <CartListView
-                    key={index}
-                    productNo={product.productNo}
-                    productNm={product.productNm}
-                    price={product.price}
-                    productImgPath={product.productImgPath}
-                    ></CartListView>
+                    cart.map((product, index)=>(
+                        <CartListView
+                        key={index}
+                        productNo={product.product_no}
+                        productNm={product.product_nm}
+                        price={product.price}
+                        productImgPath={product.product_img_path}
+                        ></CartListView>
                     ))
                     : <StEmptyBox>
                     장바구니에 담긴 상품이 없습니다
                     </StEmptyBox>
                 }
-                <KurlybagListView></KurlybagListView>
+                {
+                    kurlybag
+                    ?
+                    <KurlybagView></KurlybagView>
+                    :
+                    <></>
+                }
+                {
+                    kurlybag
+                    ?
+                    kurlybag.map((product, index)=>(
+                        <CartListView
+                        key={index}
+                        productNo={product.product_no}
+                        productNm={product.product_nm}
+                        price={product.price}
+                        productImgPath={product.product_img_path}
+                        ></CartListView>
+                    ))
+                    :
+                    <></>
+                }
+                {/* <KurlybagListView></KurlybagListView> */}
                 <StOrderBtn>이대로 주문하기</StOrderBtn>
             </StBox>
         </>
@@ -94,6 +122,7 @@ const StOrderBtn = styled.div`
     align-items: center;
     padding: 10px;
     gap: 10px;
+    margin-left: 12px;
 
     position: fixed;
     width: 366px;

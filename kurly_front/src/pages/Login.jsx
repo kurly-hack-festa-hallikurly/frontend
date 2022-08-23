@@ -1,12 +1,38 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
+
+
 import styled from "styled-components";
+import apis from "../api/main";
 import backBtn from "../images/backBtn.svg"
 
 const Login = ()=>{
     const navigate = useNavigate();
     const idRef = useRef(null);
     const pwRef = useRef(null);
+    const [userId, setUserId] = useState();
+    
+    const login = (data)=>{
+        return apis.postUser(data);
+    }
+
+    const loginMutate = useMutation(login, {
+        onSuccess: (data)=>{
+            setUserId(()=>(idRef.current.value));
+            console.log(userId);
+            console.log(data);
+            
+        }})
+
+    const loginHandler = ()=>{
+        const user_info = {
+            user_id: idRef.current.value,
+            user_pw: pwRef.current.value
+        }
+        loginMutate.mutate(user_info)
+    }
+
     return(
         <>
             <StBox>
@@ -21,7 +47,8 @@ const Login = ()=>{
                     <StPwInputField placeholder="비밀번호 입력" type="password" ref={pwRef}></StPwInputField>
                     {/* <StInfoSave></StInfoSave> */}
                     <StLoginBtn
-                    onClick={()=>console.log(idRef.current.value)}
+                    onClick={()=>{loginHandler()}}
+                    // onClick={()=>console.log(idRef.current.value)}
                     >로그인</StLoginBtn>
                     <StSignupBtn>회원가입</StSignupBtn>
                     <StFindInfo></StFindInfo>

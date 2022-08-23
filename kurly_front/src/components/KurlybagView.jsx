@@ -4,19 +4,30 @@ import imgPlaceHolder from "../images/imgPlaceHolder.png";
 import kurlyBagImg from "../images/kurly_bag_img.gif";
 import questionMark from "../images/questionmark.png";
 
-const KurlybagListView = ({ productNo, productNm, productImgPath, price })=>{
+const KurlybagView = ({ productNo, productNm, productImgPath, price })=>{
     const [count, setCount] = useState(1);
     return (
         <>
             <StBox>
-                <StProductImg imgSrc={productImgPath}>
-                </StProductImg>
-                <StProductInfo>
-                    <StDeliType>샛별배송</StDeliType>
-                    <StProductTitle>{productNm}</StProductTitle>
-                    <StProductPrice>{price} 원</StProductPrice>
-                    <StKurlyOnlyLabel>Kurly Only</StKurlyOnlyLabel>
-                </StProductInfo>
+                <StCartTopImgBox>
+                    <StCartTopTitleBox>
+                        <StCartTopKurlyBag>Kurly Bag</StCartTopKurlyBag>
+                        <StCartTopTutorialBtn></StCartTopTutorialBtn>
+                    </StCartTopTitleBox>
+                    <StCartTopImg></StCartTopImg>
+                    <StCartTopText>
+                        은선님이 장보는 패턴을 분석해 이번 주 추천 상품을 준비했어요
+                    </StCartTopText>
+                </StCartTopImgBox>
+                <StCartKurlyBagBox>
+                    <StSelectAllBox>
+                        <StSelectText>
+                            <StSeletCheckbox></StSeletCheckbox>
+                            컬리백 전체선택
+                        </StSelectText>
+                        <StSelectDel>선택삭제</StSelectDel>
+                    </StSelectAllBox>
+                </StCartKurlyBagBox>
             </StBox>
         </>
     );
@@ -216,4 +227,4 @@ const StBox = styled.div`
     /* padding: 0 20px 0 20px; */
 `
 
-export default KurlybagListView
+export default KurlybagView

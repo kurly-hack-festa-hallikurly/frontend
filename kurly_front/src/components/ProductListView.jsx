@@ -1,11 +1,38 @@
+import { useMutation } from "react-query";
 import styled from "styled-components";
+import apis from "../api/main";
+import cartImg from "../images/cartImg.svg"
 import imgPlaceHolder from "../images/imgPlaceHolder.png"
 
 const ProductListView = ({ productNo, productNm, productImgPath, price })=>{
+    
+    const addCart = (data)=>{
+        return apis.postCart(data)
+    }
+    const addCartMutate = useMutation(addCart, {
+        onSuccess: (data)=>{
+            console.log(data)
+            console.log("success!!");
+        }
+    })
+
+    const addCartHandler =() => {
+        const product_info = {
+            product_cnt: 1,
+            product_nm: productNm,
+            product_no: productNo,
+            user_id: 1 // user_id 변경 필요
+        }
+        addCartMutate.mutate(product_info)
+    }
     return (
+
         <>
             <StBox>
                 <StProductImg imgSrc={productImgPath}>
+                    <StCartImg 
+                    onClick={()=>{addCartHandler()}}
+                    ></StCartImg>
                 </StProductImg>
                 <StProductInfo>
                     <StDeliType>샛별배송</StDeliType>
@@ -17,6 +44,15 @@ const ProductListView = ({ productNo, productNm, productImgPath, price })=>{
         </>
     );
 }
+const StCartImg = styled.div`
+    width: 36px;
+    height: 36px;
+    margin-top: 170px;
+    margin-left: 120px;
+    background-image: url(${cartImg});
+    background-size: cover;
+    background-repeat: no-repeat;
+`
 const StKurlyOnlyLabel = styled.div`
     padding: 2px 6px;
     border-radius: 4px;

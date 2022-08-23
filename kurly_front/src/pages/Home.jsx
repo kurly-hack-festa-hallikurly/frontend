@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components"
 
 import GlobalBottomNavi from "../components/GlobalBottomNavi";
@@ -8,9 +7,9 @@ import Jumbotron from "../components/Jumbotron";
 import NavBar from "../components/NavBar";
 import ProductList from "../components/ProductList";
 import Snackbar from "../components/Snackbar";
+import { useGetHome } from "../Hooks/useGetHome";
 
 const Home = () => {
-    const navigate = useNavigate();
     const [width, setWidth] = useState(window.innerWidth);
     const [snackbar, setSnackbar] = useState(false);
     
@@ -18,6 +17,10 @@ const Home = () => {
     const updateScroll = () => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop);
     }
+    const user_id = 1
+    const {data} = useGetHome({user_id});
+    console.log(data);
+
     useEffect(()=>{
         window.addEventListener('scroll', updateScroll);
         if (scrollPosition > 800){
@@ -29,13 +32,35 @@ const Home = () => {
     useEffect(()=>{
         const windowResize = () => {
             setWidth(window.innerWidth)
-            console.log(width);
+            // console.log(width);
         }
         window.addEventListener(`resize`, windowResize);
     }, [width])
     
-    // if (width>390) {
-    //     return <>모바일 사이즈에 최적화 되어 있습니다. 가로 사이즈를 390픽셀로 줄여주세요</>
+    // if (width > 414) {
+    //     // return <>모바일 사이즈에 최적화 되어 있습니다. 가로 사이즈를 390픽셀로 줄여주세요</>
+    //     return (
+    //         <>
+    //             <StPCWrapper>
+    //             <StBox>
+    //                 <NavBar></NavBar>
+    //                 <GlobalTopNavi></GlobalTopNavi>
+    //                 {
+    //                     snackbar
+    //                     ?
+    //                     <>
+    //                         <Snackbar></Snackbar>
+    //                     </>
+    //                     :
+    //                     <></>
+    //                 }
+    //                 <Jumbotron></Jumbotron>
+    //                 <ProductList></ProductList>
+    //                 <GlobalBottomNavi></GlobalBottomNavi>
+    //             </StBox>
+    //             </StPCWrapper>
+    //         </>
+    //     )
     // } else {
         return (
             <>
@@ -60,7 +85,9 @@ const Home = () => {
     }
     
 // }
-
+// const StPCWrapper = styled.div`
+    // 
+// `
 const StBox = styled.div`
     display: flex;
     flex-direction: column;
