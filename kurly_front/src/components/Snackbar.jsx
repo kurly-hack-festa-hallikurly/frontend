@@ -11,7 +11,7 @@ const Snackbar = ()=>{
             navigate('/cart')}}>
                 <StSnackImg></StSnackImg>
                 <StSnackText>
-                    은선님이 좋아할 만한 상품들을 컬리가 장바구니에 담아뒀어요!
+                    할리님이 좋아할 만한 상품들을 컬리가 장바구니에 담아뒀어요!
                 </StSnackText>
             </StBox>
         </>

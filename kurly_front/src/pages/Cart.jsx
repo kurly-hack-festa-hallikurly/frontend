@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import KurlybagListView from "../components/KurlybagListView";
 import KurlybagView from "../components/KurlybagView";
+import toggleActiveImg from "../images/toggleActive.png";
+import toggleInactiveImg from "../images/toggleInactive.png";
 
 
 const Cart = ()=>{
@@ -21,6 +23,7 @@ const Cart = ()=>{
     console.log(user_data);
     const [myCartList, setMyCartList] = useState();
     const [KurlybagList, setKurlybagList] = useState();
+    const [toggleActive, setToggleActive] = useState(true);
     const { data } = useGetProductInfo(); // 변경 필요
     const { data: cart } = useGetCartInfo({user_id});
     const { data: kurlybag} = useGetKurlybagInfo({user_id});
@@ -28,7 +31,7 @@ const Cart = ()=>{
         setMyCartList(data);
         setKurlybagList(data);
     }, [myCartList, KurlybagList, data])
-
+    
     return(
         <>
             <StBox>
@@ -55,7 +58,7 @@ const Cart = ()=>{
                 </StAddressBox>
                 <StDivider>
                 </StDivider>
-                {
+                {/* {
                     cart
                     ?
                     <>
@@ -85,18 +88,20 @@ const Cart = ()=>{
                     : <StEmptyBox>
                     장바구니에 담긴 상품이 없습니다
                     </StEmptyBox>
-                }
+                } */}
                 {
-                    kurlybag
+                    toggleActive
                     ?
-                    <KurlybagView></KurlybagView>
+                    <KurlybagView
+                    active={toggleActive}></KurlybagView>
                     :
-                    <></>
+                    <KurlybagView
+                    active={toggleActive}></KurlybagView>
                 }
                 {
-                    kurlybag
+                    toggleActive
                     ?
-                    kurlybag.map((product, index)=>(
+                    kurlybag?.map((product, index)=>(
                         <CartListView
                         key={index}
                         productNo={product.product_no}
@@ -108,12 +113,81 @@ const Cart = ()=>{
                     :
                     <></>
                 }
+                {
+                    toggleActive
+                    ?
+                    <StKurlybagToggleBox>
+                    <StKurlybagToggleText>Kurly bag을 사용하고 싶지 않다면</StKurlybagToggleText>
+                    <StKurlybagToggleBtn
+                    active={toggleActive}
+                    onClick={()=>{setToggleActive(false)}}></StKurlybagToggleBtn>
+                    </StKurlybagToggleBox>
+                    :
+                    <StKurlybagToggleBox>
+                    <StKurlybagToggleText>Kurly bag의 추천을 받고 싶다면</StKurlybagToggleText>
+                    <StKurlybagToggleInactiveBtn
+                    active={toggleActive} 
+                    onClick={()=>{setToggleActive(true)}}></StKurlybagToggleInactiveBtn>
+                    </StKurlybagToggleBox>
+                    
+                }
+                {/* <StKurlybagToggleBox>
+                    <StKurlybagToggleText>Kurly bag을 사용하고 싶지 않다면</StKurlybagToggleText>
+                    <StKurlybagToggleBtn
+                    onClick={()=>{setToggleActive(true)}}></StKurlybagToggleBtn>
+                </StKurlybagToggleBox> */}
+
                 {/* <KurlybagListView></KurlybagListView> */}
-                <StOrderBtn>이대로 주문하기</StOrderBtn>
+                <StOrderBtn
+                onClick={()=>{navigate(-1)}}
+                >이대로 주문하기</StOrderBtn>
             </StBox>
         </>
     );
 }
+const StKurlybagToggleBtn = styled.div`
+    width: 50px;
+    height: 24px;
+    background-image: url(${toggleActiveImg});
+    cursor: pointer;
+    margin-left: 60px;
+`
+const StKurlybagToggleInactiveBtn = styled.div`
+    width: 50px;
+    height: 24px;
+    background-image: url(${toggleInactiveImg});
+    cursor: pointer;
+    margin-left: 60px;
+`
+const StKurlybagToggleText = styled.div`
+    /* Kurly bag의 추천을 받고싶다면 */
+    width: 208px;
+    height: 22px;
+
+    font-family: -apple-system, BlinkMacSystemFont, AppleSDGothicNeo, "Apple SD Gothic Neo", Helvetica, "Noto Sans KR", "malgun gothic", "맑은 고딕", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.042em;
+
+    color: #737379;
+    box-sizing: border-box;
+    margin-left: 30px;
+
+`
+const StKurlybagToggleBox = styled.div`
+    display: flex;
+    width: 349px;
+    height: 60px;
+    margin-left: 18px;
+
+    background: #FAFAFB;
+    border-radius: 10px;
+    margin-bottom: 100px;
+    justify-content: flex-start;
+    align-items:center;
+`
 const StOrderBtn = styled.div`
     /* btn_주문하기 */
     display: flex;

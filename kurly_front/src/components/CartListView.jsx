@@ -10,7 +10,7 @@ const CartListView = ({ productNo, productNm, productImgPath, price })=>{
         <>
             <StBox>
                 <StProductItemBox>
-                    <StCheckBox type="checkbox"></StCheckBox>
+                    <StCheckBox type="checkbox" checked="true"></StCheckBox>
                 <StProductImg imgSrc={productImgPath}>
                 </StProductImg>
                 <StProductInfo>

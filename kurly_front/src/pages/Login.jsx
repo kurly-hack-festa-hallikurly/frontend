@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useMutation } from "react-query";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
@@ -8,6 +9,7 @@ import apis from "../api/main";
 import backBtn from "../images/backBtn.svg"
 
 const Login = ()=>{
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const idRef = useRef(null);
     const pwRef = useRef(null);
@@ -19,9 +21,9 @@ const Login = ()=>{
 
     const loginMutate = useMutation(login, {
         onSuccess: (data)=>{
-            setUserId(()=>(idRef.current.value));
-            console.log(userId);
             console.log(data);
+            setUserId(()=>data.data.user_id)
+            console.log(userId);
             navigate('/');
             
         }})

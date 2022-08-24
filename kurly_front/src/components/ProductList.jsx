@@ -20,10 +20,10 @@ const ProductList = () => {
                         data?.map((product, index)=>(
                         <ProductListView
                         key={index}
-                        productNo={product.productNo}
-                        productNm={product.productNm}
+                        productNo={product.product_no}
+                        productNm={product.product_nm}
                         price={product.price}
-                        productImgPath={product.productImgPath}
+                        productImgPath={product.product_img_path}
                         >
                         </ProductListView>
                         ))

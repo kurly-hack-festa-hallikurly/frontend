@@ -4,36 +4,73 @@ import imgPlaceHolder from "../images/imgPlaceHolder.png";
 import kurlyBagImg from "../images/kurly_bag_img.gif";
 import questionMark from "../images/questionmark.png";
 
-const KurlybagView = ({ productNo, productNm, productImgPath, price })=>{
+const KurlybagView = ({ active })=>{
     const [count, setCount] = useState(1);
+    const [tutorial, setTutorial] = useState(false);
+    console.log(active)
     return (
         <>
             <StBox>
                 <StCartTopImgBox>
                     <StCartTopTitleBox>
                         <StCartTopKurlyBag>Kurly Bag</StCartTopKurlyBag>
-                        <StCartTopTutorialBtn></StCartTopTutorialBtn>
+                        <StCartTopTutorialBtn
+                        onClick={()=>{setTutorial(true)}}
+                        ></StCartTopTutorialBtn>
                     </StCartTopTitleBox>
-                    <StCartTopImg></StCartTopImg>
-                    <StCartTopText>
-                        은선님이 장보는 패턴을 분석해 이번 주 추천 상품을 준비했어요
-                    </StCartTopText>
+                    {
+                        active
+                        ? 
+                        <>
+                        <StCartTopImg></StCartTopImg>
+                        <StCartTopText>
+                        할리님이 장보는 패턴을 분석해 이번 주 추천 상품을 준비했어요
+                        </StCartTopText>
+                        </>
+                        :
+                        <>
+                        <StCartEmptyText>
+                        컬리백을 다시 켜주시면 은선님에게 더 잘 맞는 상품을 담아서 찾아올게요.
+                        </StCartEmptyText>
+                        </>
+                    }
                 </StCartTopImgBox>
                 <StCartKurlyBagBox>
-                    <StSelectAllBox>
+                    {
+                        active
+                        ?
+                        <>
+                        <StSelectAllBox>
                         <StSelectText>
                             <StSeletCheckbox></StSeletCheckbox>
                             컬리백 전체선택
                         </StSelectText>
                         <StSelectDel>선택삭제</StSelectDel>
                     </StSelectAllBox>
+                        </>
+                        :
+                        <></>
+                    }
                 </StCartKurlyBagBox>
             </StBox>
         </>
     );
 }
-const StMyProductWrapper = styled.div`
-    
+const StCartEmptyText = styled.div`
+    /* 컬리백을 다시 켜주시면 은선님에게 더 잘 맞는 상품을 담아서 찾아올게요. */
+    width: 278px;
+    height: 44px;
+    font-family: -apple-system, BlinkMacSystemFont, AppleSDGothicNeo, "Apple SD Gothic Neo", Helvetica, "Noto Sans KR", "malgun gothic", "맑은 고딕", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    margin-top: 130px;
+
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #999999;
 `
 const StDivider = styled.div`
     width: 100%;
